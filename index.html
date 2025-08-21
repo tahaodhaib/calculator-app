@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>آلة حاسبة</title>
+  <style>
+    body {
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      background: #007bff;
+      color: white;
+      margin: 0;
+      padding: 15px;
+      font-size: 20px;
+      border-bottom: 3px solid #0056b3;
+    }
+    .calculator {
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      width: 300px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+    input {
+      width: 120px;
+      padding: 10px;
+      margin: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      text-align: center;
+    }
+    button {
+      width: 60px;
+      height: 40px;
+      margin: 5px;
+      font-size: 18px;
+      font-weight: bold;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>المهندس طة عذيب علي</h1>
+  <div class="calculator">
+    <input type="number" id="num1" placeholder="الرقم الأول">
+    <input type="number" id="num2" placeholder="الرقم الثاني"><br>
+
+    <button onclick="calculate('+')">+</button>
+    <button onclick="calculate('-')">-</button>
+    <button onclick="calculate('*')">×</button>
+    <button onclick="calculate('/')">÷</button>
+
+    <div id="result">النتيجة: </div>
+  </div>
+
+  <script>
+    function calculate(op) {
+      let n1 = parseFloat(document.getElementById("num1").value);
+      let n2 = parseFloat(document.getElementById("num2").value);
+      let res = 0;
+
+      if (isNaN(n1) || isNaN(n2)) {
+        document.getElementById("result").innerText = "الرجاء إدخال رقمين صحيحين";
+        return;
+      }
+
+      switch(op) {
+        case '+': res = n1 + n2; break;
+        case '-': res = n1 - n2; break;
+        case '*': res = n1 * n2; break;
+        case '/': 
+          if (n2 === 0) {
+            document.getElementById("result").innerText = "لا يمكن القسمة على صفر";
+            return;
+          }
+          res = n1 / n2; 
+          break;
+      }
+
+      document.getElementById("result").innerText = "النتيجة: " + res;
+    }
+  </script>
+</body>
+</html>
